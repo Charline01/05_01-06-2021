@@ -1,38 +1,340 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
-<head>
+  <head>
+    <title>Orinoco - Boutique en ligne de produits maison & déco</title>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width" />
 <link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://kit.fontawesome.com/6aaac548d6.js" crossorigin="anonymous"></script>
+<link href="style.css" rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon" href="../images/icone.png" />
+		
 </head>
 
         <body>
 
-            <p id="text">
-                Bienvenue sur Orinoco !
-            </p>
-
-        
+            <header>
+    
+                <div id="logo"></div>
+                <h1 id="logo-orinoco"> Bienvenue sur Orinoco !</h1>  
+    
                 <nav>
                     <div id="menu">
                         <p><a href="index.html">Accueil</a></p>
-                        <p>
-                            <a href="#">A propos </a>
-                            
-                        </p>
+                        <p><a href="apropos.html">A propos </a></p>
                         <p><a href="panier.html">Panier</a></p>
                         <p><a href="contact.html">Contact</a></p>
                     </div>
                 </nav>
 
-            <header>
             </header>
-        
-            une page de confirmation de commande, remerciant l'utilisateur pour sa
-commande, et indiquant le prix total et l'identifiant de commande envoyé
-par le serveur.
+
+      <div class="containerCommander">
+
+
+                    <a href="panier.html"><div class="boutonRetourPanier"> <i class="fas fa-arrow-alt-circle-left"></i> Modifier ma commande
+                    </div>
+                    </a>
+
+                    
+                    <div class="modal">
+                        <div class="modal__container">
+                          <div class="modal__featured">
+
+                            
+                            <div class="modal__circle"></div>
+                            <img src="../images/teddy_3.jpg" class="modal__product" alt="peluche3"/>
+                          </div>
+                          <div class="modal__content">
+                            <h2>Formulaire de paiement</h2>
+
+                            <form id="contact" name="contact" method="POST" action="remerciement.html">
+                      
+                                <fieldset name="contact">
+                                    <legend>Coordonnées</legend>
+
+                                    <input id="firstName" name="firstName" placeholder="Prenom" type="text" tabindex="1" required autofocus>
+                                
+                                    <input id="lastName" name="lastName" placeholder="Nom" type="text" tabindex="2" required >
+                                
+                                    <input id="address" name="address" placeholder="Adresse" type="text" tabindex="3" required >
+                              
+                                    <input id="city" name="city" placeholder="Ville" type="text" tabindex="4" required >
+
+                            
+                                    <input id="email" name="email" placeholder="E-mail" type="email" tabindex="5" required>
+                                </fieldset>
+                            
+                                            
+
+                                  <div class="form-list">
+                                    
+                                    <fieldset>
+                                      <legend>Coordonnées bancaires</legend>
+                                    <div class="form-list__row">
+                                      <label>Numéro de la carte</label>
+                                      <div id="input--cc" class="creditcard-icon">
+                                        <input type="text" />
+                                      </div>
+                                    </div>
+                                    <div class="form-list__row form-list__row--inline">
+                                      <div>
+                                        <label>Date d'expiration</label>
+                                        <div class="form-list__input-inline">
+                                          <input type="text"  placeholder="MM"  minlength="2" maxlength="2"  />
+                                          <input type="text" placeholder="YY" minlength="2" maxlength="2" />
+                                        </div>
+                                      </div>
+                                      <div>
+                                        <label>
+                                          CVC
+
+                                          <a href="#cvv-modal" class="button--transparent modal-open button--info">
+                                            <svg class="nc-icon glyph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16"><g> <path fill="#35a4fb" d="M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8s8-3.6,8-8S12.4,0,8,0z M8,13c-0.6,0-1-0.4-1-1c0-0.6,0.4-1,1-1s1,0.4,1,1 C9,12.6,8.6,13,8,13z M9.5,8.4C9,8.7,9,8.8,9,9v1H7V9c0-1.3,0.8-1.9,1.4-2.3C8.9,6.4,9,6.3,9,6c0-0.6-0.4-1-1-1 C7.6,5,7.3,5.2,7.1,5.5L6.6,6.4l-1.7-1l0.5-0.9C5.9,3.6,6.9,3,8,3c1.7,0,3,1.3,3,3C11,7.4,10.1,8,9.5,8.4z"></path> </g></svg>
+                                            <span class="visuallyhidden">What is CVV?</span>
+                                          </a>
+                                        </label>
+                                        <input type="text" name="cc_cvc" placeholder="123" pattern="\\d*" minlength="3" maxlength="4" />
+                                      </div>
+                                    </div>
+                                    <div>
+                                    </div> 
+                                    </fieldset>
+
+
+                                      <label class="phrasecoche"><input type="checkbox" name="conditionaccepte25bca243-0477-40c3-a63e-30b012f77e15" id="conditionaccepte25bca243-0477-40c3-a63e-30b012f77e15" required> 
+                  
+                                        En cochant cette case, je reconnais avoir pris connaissance des <a href="#">Conditions Générales de Vente</a> et je les accepte.
+                                        </label>
+                                      </div>
+                                      <br>
+
+                                      <button class="button" id="boutonCommander" type="submit" onclick="validerFormulaire()">Commander</button>
+
+                              
+                            
+                              
+                            </form>
+                          </div> <!-- END: .modal__content -->
+                        </div> <!-- END: .modal__container -->
+                      </div> <!-- END: .modal -->
+                    
+
+      </div>
 
 
 
-            </body>
+
+
+
+
+
+
+<script>
+
+
+// récupérer les informations du panier et les enregistrer dans le localstorage // 
+function envoyerFormulaire() {
+  var panier = JSON.parse(localStorage.getItem('panier'));
+
+var products = ""; 
+for (p = 0; p<panier.length;p++) {
+products += "&products[]=" + panier[p];
+}
+
+var request = new XMLHttpRequest();
+request.open("POST", 'http://127.0.0.1:3000/api/teddies/order', true);
+
+
+request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+var nom = localStorage.getItem('firstName');
+var prenom = localStorage.getItem('lastName');
+var adresse = localStorage.getItem('address');
+var ville = localStorage.getItem('city');
+var email = localStorage.getItem('email');
+
+if (nom!=""&&prenom!=""&&adresse!=""&&ville!=""&&email!=""){
+  
+  request.send("contact[firstName]=" + nom + "&contact[lastName]=" + prenom + "&contact[address]="+ adresse + "&contact[city]=" + ville + "&contact[email]=" + email + products);
+}
+else {
+  alert("probleme variable");
+}
+
+request.onload = function () {
+  var reponse=this.response
+localStorage.setItem('commande',this.response); 
+
+};
+}
+
+  
+
+//Enregistrer les informations du formulaire dans le localstorage//
+function validerFormulaire(){
+    var prenom = document.getElementById("firstName").value;
+    
+
+    var nom = document.getElementById("lastName").value;
+    
+
+    var adresse = document.getElementById("address").value;
+
+
+    var ville = document.getElementById("city").value;
+    
+
+    var email = document.getElementById("email").value;
+
+
+
+    if (prenom != "" && nom !="" && adresse!="" && ville !="" && email !=""){
+      var contact = {
+          firstName: prenom, 
+          lastName: nom,
+          address: adresse,
+          city: ville,
+          email: email
+          };
+
+          localStorage.setItem("contact", contact);
+          localStorage.setItem("firstName", prenom);
+          localStorage.setItem("lastName", nom);
+          localStorage.setItem("address", adresse);
+          localStorage.setItem("city", ville);
+          localStorage.setItem("email", email);
+
+        envoyerFormulaire();
+
+
+
+    }
+     else alert("Veuillez remplir tous les champs du formulaire");
+
+
+ }
+
+
+
+
+</script>
+
+
+
+<footer>
+  <div class="footer-gray">
+  <div class="footer-custom">
+      <div class="footer-lists">
+      <div class="footer-list-wrap">
+          
+      </div>
+      <!--/.footer-list-wrap-->
+      <div class="footer-list-wrap">
+          <h6 class="ftr-hdr">⚙️ Service client</h6>
+          <ul class="ftr-links-sub">
+          <li><a href="contact.html" rel="nofollow">Contactez-nous</a></li>
+          <li><a href="#" rel="nofollow">Conditions Générales de Vente</a></li>
+          <li><a href="#" rel="nofollow">Expéditions et livraisons</a></li>
+          <li><a href="#" rel="nofollow">Retours</a></li>
+          <li><a href="#" rel="nofollow">Cadeaux personnalisés</a></li>
+          <li><a href="#" rel="nofollow">Mentions légales</a></li>
+          <li><a href="#" rel="nofollow">FAQs</a></li>
+          </ul>
+      </div>
+      <div class="footer-list-wrap">
+          <h6 class="ftr-hdr">🧸 A Propos</h6>
+          <ul class="ftr-links-sub">
+          <li><a href="#" rel="nofollow">Notre savoir-faire</a></li>
+          <li><a href="#" rel="nofollow">Notre culture</a></li>
+          <li><a href="#" rel="nofollow">Nos créateurs</a></li>
+          </ul>
+      </div>
+      <!--/.footer-list-wrap-->
+      <div class="footer-list-wrap">
+          <h6 class="ftr-hdr">👤 Mon compte</h6>
+          <ul class="ftr-links-sub">
+              <li class="ftr-Login"><span class="link login-trigger">Identifiants perdus</span></li>
+              <li><span class="link">Suivre mes commandes</span></li>
+         
+          </ul>
+      </div>
+
+      
+      <!--/.footer-list-wrap-->
+    
+      <!--/.footer-lists-->
+      <div class="footer-email">
+      <h6 class="ftr-hdr">💌 Newsletter inspirante</h6>
+      <div id="ftr-email" class="ftr-email-form">
+          <form id="ftrEmailForm">
+          <div class="error">Non valide</div>
+          <input type="text" name="email_address_" id="ftrEmailInput" class="input" placeholder="Entrez votre e-mail" />
+          <!--
+              -->
+          <input type="submit" class="button" value="ENVOyer" />
+          <input type="hidden" name="country_iso2" value="">
+          <input type="hidden" name="language_iso2" value="en">
+          <input type="hidden" name="site_domain" value="art.com">
+          <input type="hidden" name="email_acq_source" value="01-000001">
+          <input type="hidden" name="email_acq_date" value="" id="ftr-email-date">
+          <input type="hidden" name="brand_id" value="ART">
+          <input type="hidden" name="_ri_" value="X0Gzc2X%3DWQpglLjHJlYQGnp51yrMf2qXdC9tjU8pzgMtwfYzaVwjpnpgHlpgneHmgJoXX0Gzc2X%3DWQpglLjHJlYQGnyLSq2fzdkuzdzglHMsUhgeNzaSgkk">
+          </form>
+      </div>
+      <!--/.ftr-email-form-->
+      <div class="ftr-email-privacy-policy"></div>
+      </div>
+      <!--/.footer-email-->
+      <div class="footer-social">
+      <h6 class="ftr-hdr">Nous suivre</h6>
+      <ul>
+          <li>
+          <a href="#" title="Facebook" onclick="_gaq.push(['_trackSocial', 'Facebook', 'Follow', 'Footer', 'undefined', 'True']);">
+              <img width="24" height="24" alt="Like us on Facebook" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/fb.png">
+          </a>
+          </li>
+          <li>
+          <a href="#" title="Google+" onclick="_gaq.push(['_trackSocial', 'GooglePlus', 'Follow', 'Footer', 'undefined', 'True']);">
+              <img width="24" height="24" alt="Follow us on Google+" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/gplus.png">
+          </a>
+          </li>
+          <li>
+          <a href="#" target="_blank">
+              <img width="24" height="24" alt="Follow us on Pinterest" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/pin-badge.png">
+          </a>
+          </li>
+          <li>
+          <a href="#" target="#">
+              <img width="24" height="24" alt="Follow us on Instagram" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/instagram-badge.png">
+          </a>
+          </li>
+          <li>
+          <a href="#" title="Twitter" onclick="_gaq.push(['_trackSocial', 'Twitter', 'Follow', 'Footer', 'undefined', 'True']);">
+              <img width="67" alt="Follow us on Twitter" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/twitter.png">
+          </a>
+          </li>
+      </ul>
+      </div>
+      <!--/.footer-social-->
+      
+      <!--/.footer-legal-->
+      <div class="footer-payment">
+      <ul>
+          
+          
+          
+      </ul>
+      </div>
+      <!--/.footer-payment-->
+  </div>
+  <!--/.footer-custom-->
+  </div>
+  <!--/.footer-gray-->
+  </div>
+</footer>
+
+</body>
+
   </html>

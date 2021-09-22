@@ -1,43 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
-<head>
-    <title>Orinoco - Achetez par produits</title>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="style.css">
-</head>
+
+    <head>
+        <title>Orinoco - Boutique en ligne de produits maison & déco</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://kit.fontawesome.com/6aaac548d6.js" crossorigin="anonymous"></script>
+    <link href="style.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/icone.png" />
+            
+    </head>
 
         <body>
             <header>
-                <h1 id="logo-orinoco">
-                    Bienvenue sur Orinoco !
-                </h1>
+
+                
+
+                <div id="logo"></div>
+                <h1 id="logo-orinoco"> Bienvenue sur Orinoco !</h1>  
     
                 <nav>
                     <div id="menu">
                         <p><a href="index.html">Accueil</a></p>
-                        <p><a href="#">A propos </a></p>
+                        <p><a href="apropos.html">A propos </a></p>
                         <p><a href="panier.html">Panier</a></p>
                         <p><a href="contact.html">Contact</a></p>
                     </div>
                 </nav>
+
+             
             </header>
-            
+            <div>
+                <h2 class="sousTitreIndex">Découvrez notre gamme d'ours peluches faits-main.</h2>
+            </div>
                     <section>
+                        
                     </section>
             
             <script>
+            
                 
-                document.getElementById("text").style.color="red";
-
                 var header = document.querySelector('header');
                 var section = document.querySelector('section');
+                
 
                 chercherapi ('http://127.0.0.1:3000/api/teddies','teddies');
-                chercherapi ('http://127.0.0.1:3000/api/furniture','furniture');
-                chercherapi ('http://127.0.0.1:3000/api/cameras','cameras');
+                
 
-                function chercherapi(requestURL,categorie) {
+                
+
+                function chercherapi(requestURL) {
 
                         var request = new XMLHttpRequest();
 
@@ -48,14 +62,14 @@
 
                         request.onload = function() {
                             var teddies = request.response;
-                            showTeddies(teddies,categorie);
+                            showTeddies(teddies);
                             }
                 }
 
 
+            //afficher les infos des peluches//
 
-
-                function showTeddies(jsonObj,categorie) {
+                function showTeddies(jsonObj) {
                     jsonObj.forEach( teddies => {
 
                     var myArticle = document.createElement('article');
@@ -63,167 +77,171 @@
                     var myPara1 = document.createElement('p');
                     var myPara2 = document.createElement('p');
                     var myImage = document.createElement('img');
-                    var myLien = document.createElement('a');
-                    var monBoutonPanier = document.createElement ('button') 
+                    var Voir = document.createElement('a');
+                    var ajoutFavori = document.createElement('p');
+                    var coeurlike = document.createElement ('span');
+                    var boutonVoir = document.createElement ('div');
+                    
+                    
 
                     myH2.textContent = teddies.name;
-                    myPara1.textContent = 'Prix : ' + teddies.price;
+                    
+                   
+                    
+                    myPara1.textContent = 'Prix : ' + (teddies.price/100) + ' €';
                     myPara2.textContent = 'Description : ' + teddies.description;
                     myImage.src = teddies.imageUrl;
-                    myLien.href = 'produit.html?type='+categorie+'&id='+teddies._id;
-                    myLien.textContent = 'Voir';
-                    monBoutonPanier.textContent = '🛒 '+ 'Ajouter au panier';
-                    monBoutonPanier.href = '/panier/';
+                    Voir.href = 'produit.html?id='+teddies._id;
+                    Voir.innerHTML = ` <div class="boutonVoir">Voir
+                        </div>
+                    `;
+                    coeurlike.innerHTML = `<div class="coeur_like">
+                                            <span class="fa-stack">
+                                            <i class="far  fa-heart" ></i>
+                                            <i class="far  fa-heart fa-gradient"></i>
+                                            </span>
+                                            </div>
+                                            `;
 
+                    
+                   
+                    
                     myArticle.appendChild(myH2);
-                    myArticle.appendChild(myPara1);
+                     myArticle.appendChild(myPara1);
                     myArticle.appendChild(myPara2);
                     myArticle.appendChild(myImage);
-                    myArticle.appendChild(myLien);
-                    myArticle.appendChild(monBoutonPanier);
+                    myArticle.appendChild(Voir);
+                   
                     section.appendChild(myArticle);
+
+                    myArticle.appendChild(ajoutFavori);
+                    
+                    myH2.appendChild(coeurlike);
+                    myArticle.appendChild(boutonVoir);
+                    boutonVoir.appendChild(Voir);
+                
+
                 }
             
 
             )
         }
-
-            document.querySelectorAll(".monBoutonPanier").forEach(panier => {
-                panier.addEventListener("click",function(){
-                monBoutonPanier(this.myArticle.id);  
-                })
-            })
+    
         
             </script>
 
 
-                                                    <footer>
-                                                        <div class="footer-gray">
-                                                        <div class="footer-custom">
-                                                            <div class="footer-lists">
-                                                            <div class="footer-list-wrap">
-                                                                
-                                                                </ul>
-                                                                    <h6 class="ftr-hdr">International</h6>
-                                                                    <ul class="ftr-links-sub">
-                                                                    <li><a href="http://www.art.fr" rel="nofollow">France</a></li>
-                                                                    <li><a href="https://www.art.co.uk" rel="nofollow">United Kingdom</a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <!--/.footer-list-wrap-->
-                                                            <div class="footer-list-wrap">
-                                                                <h6 class="ftr-hdr">Customer Service</h6>
-                                                                <ul class="ftr-links-sub">
-                                                                <li><a href="/help/talktous.html" rel="nofollow">Contact Us</a></li>
-                                                                <li><a href="/help/placingorders.html" rel="nofollow">Ordering</a></li>
-                                                                <li><a href="/help/shipping.html" rel="nofollow">Shipping &amp; Delivery</a></li>
-                                                                <li><a href="/help/shippingreturns.html" rel="nofollow">Returns</a></li>
-                                                                <li><a href="/help/international-shipping.html" rel="nofollow">International Orders</a></li>
-                                                                <li><a href="/~/egift-cards/" rel="nofollow">Gift Cards</a></li>
-                                                                <li><a href="/help/faq.html" rel="nofollow">FAQs</a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="footer-list-wrap">
-                                                                <h6 class="ftr-hdr">About Art.com</h6>
-                                                                <ul class="ftr-links-sub">
-                                                                <li><a href="/asp/aboutus/default-asp/_/posters.htm" rel="nofollow">Our Company</a></li>
-                                                                <li><a href="http://corporate.art.com/careers" rel="nofollow">Careers</a></li>
-                                                                <li><a href="/asp/landing/artistrising" rel="nofollow">Artist Rising</a></li>
-                                                                <li><a href="/~/art-for-business" rel="nofollow">Business &amp; Trade Sales</a></li>
-                                                                <li><a href="http://affiliates.art.com/index.aspx" rel="nofollow">Affiliate Program</a></li>
-                                                                <li><a href="/catalog" rel="nofollow"><strong>Shop Our Catalog</strong></a></li>
-                                                                <li><a href="http://blog.art.com" rel="nofollow">ART.COM BLOG</a></li>
-                                                                </ul>
-                                                            </div>
-                                                            <!--/.footer-list-wrap-->
-                                                            <div class="footer-list-wrap">
-                                                                <h6 class="ftr-hdr">My Account</h6>
-                                                                <ul class="ftr-links-sub">
-                                                                    <li class="ftr-Login"><span class="link login-trigger">Access My Account</span></li>
-                                                                    <li><span class="link" onclick="link('/asp/secure/your_account/track_orders-asp/_/posters.htm')">Track My Order</span></li>
-                                                                    <li class="ftr-Login"><span class="link ftr-access-my-account">Access My Account</span></li>
-                                                                    <li><span class="link" onclick="window.location.href = getProfileKey() + '?pagetype=oh';">Track My Order</span></li>
-                                                               
-                                                                </ul>
-                                                            </div>
-                                                            <!--/.footer-list-wrap-->
-                                                            </div>
-                                                            <!--/.footer-lists-->
-                                                            <div class="footer-email">
-                                                            <h6 class="ftr-hdr">Sign up for exclusive offers and inspiration</h6>
-                                                            <div id="ftr-email" class="ftr-email-form">
-                                                                <form id="ftrEmailForm" method="post" action="http://em.art.com/pub/rf">
-                                                                <div class="error">Please enter a valid email address</div>
-                                                                <input type="text" name="email_address_" id="ftrEmailInput" class="input" placeholder="Enter email address" />
-                                                                <!--
-                                                                    -->
-                                                                <input type="submit" class="button" value="SUBMIT" />
-                                                                <input type="hidden" name="country_iso2" value="">
-                                                                <input type="hidden" name="language_iso2" value="en">
-                                                                <input type="hidden" name="site_domain" value="art.com">
-                                                                <input type="hidden" name="email_acq_source" value="01-000001">
-                                                                <input type="hidden" name="email_acq_date" value="" id="ftr-email-date">
-                                                                <input type="hidden" name="brand_id" value="ART">
-                                                                <input type="hidden" name="_ri_" value="X0Gzc2X%3DWQpglLjHJlYQGnp51yrMf2qXdC9tjU8pzgMtwfYzaVwjpnpgHlpgneHmgJoXX0Gzc2X%3DWQpglLjHJlYQGnyLSq2fzdkuzdzglHMsUhgeNzaSgkk">
-                                                                </form>
-                                                            </div>
-                                                            <!--/.ftr-email-form-->
-                                                            <div class="ftr-email-privacy-policy"></div>
-                                                            </div>
-                                                            <!--/.footer-email-->
-                                                            <div class="footer-social">
-                                                            <h6 class="ftr-hdr">Follow Us</h6>
-                                                            <ul>
-                                                                <li>
-                                                                <a href="https://www.facebook.com/art.com" title="Facebook" onclick="_gaq.push(['_trackSocial', 'Facebook', 'Follow', 'Footer', 'undefined', 'True']);">
-                                                                    <img width="24" height="24" alt="Like us on Facebook" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/fb.png">
-                                                                </a>
-                                                                </li>
-                                                                <li>
-                                                                <a href="https://plus.google.com/108089796661280870153" title="Google+" onclick="_gaq.push(['_trackSocial', 'GooglePlus', 'Follow', 'Footer', 'undefined', 'True']);">
-                                                                    <img width="24" height="24" alt="Follow us on Google+" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/gplus.png">
-                                                                </a>
-                                                                </li>
-                                                                <li>
-                                                                <a href="https://pinterest.com/artdotcom/" target="_blank">
-                                                                    <img width="24" height="24" alt="Follow us on Pinterest" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/pin-badge.png">
-                                                                </a>
-                                                                </li>
-                                                                <li>
-                                                                <a target="_blank" href="http://instagram.com/artdotcom/">
-                                                                    <img width="24" height="24" alt="Follow us on Instagram" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/instagram-badge.png">
-                                                                </a>
-                                                                </li>
-                                                                <li>
-                                                                <a href="https://www.twitter.com/artdotcom" title="Twitter" onclick="_gaq.push(['_trackSocial', 'Twitter', 'Follow', 'Footer', 'undefined', 'True']);">
-                                                                    <img width="67" alt="Follow us on Twitter" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/twitter.png">
-                                                                </a>
-                                                                </li>
-                                                            </ul>
-                                                            </div>
-                                                            <!--/.footer-social-->
-                                                            <div class="footer-legal">
-                                                            <div>&copy; All Rights Reserved. </div>
-                                                                <div>
-                                                                    <a href="/help/privacy-policy.html" rel="nofollow">Privacy Policy</a> | <a href="/help/terms-of-use.html" rel="nofollow">Terms of Use</a> | <a href="/help/terms-of-sale.html" rel="nofollow">Terms of Sale</a>
-                                                                </div>  
-                                                            
-
-                                                            </div>
-                                                            <!--/.footer-legal-->
-                                                            <div class="footer-payment">
-                                                            <ul>
-                                                                
-                                                                
-                                                                
-                                                            </ul>
-                                                            </div>
-                                                            <!--/.footer-payment-->
-                                                        </div>
-                                                        <!--/.footer-custom-->
-                                                        </div>
-                                                        <!--/.footer-gray-->
-                                                    </footer>
+            <footer>
+                <div class="footer-gray">
+                <div class="footer-custom">
+                    <div class="footer-lists">
+                    <div class="footer-list-wrap">
+                        
+                    </div>
+                    <!--/.footer-list-wrap-->
+                    <div class="footer-list-wrap">
+                        <h6 class="ftr-hdr">⚙️ Service client</h6>
+                        <ul class="ftr-links-sub">
+                        <li><a href="contact.html" rel="nofollow">Contactez-nous</a></li>
+                        <li><a href="#" rel="nofollow">Conditions Générales de Vente</a></li>
+                        <li><a href="#" rel="nofollow">Expéditions et livraisons</a></li>
+                        <li><a href="#" rel="nofollow">Retours</a></li>
+                        <li><a href="#" rel="nofollow">Cadeaux personnalisés</a></li>
+                        <li><a href="#" rel="nofollow">Mentions légales</a></li>
+                        <li><a href="#" rel="nofollow">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-list-wrap">
+                        <h6 class="ftr-hdr">🧸 A Propos</h6>
+                        <ul class="ftr-links-sub">
+                        <li><a href="#" rel="nofollow">Notre savoir-faire</a></li>
+                        <li><a href="#" rel="nofollow">Notre culture</a></li>
+                        <li><a href="#" rel="nofollow">Nos créateurs</a></li>
+                        </ul>
+                    </div>
+                    <!--/.footer-list-wrap-->
+                    <div class="footer-list-wrap">
+                        <h6 class="ftr-hdr">👤 Mon compte</h6>
+                        <ul class="ftr-links-sub">
+                            <li class="ftr-Login"><span class="link login-trigger">Identifiants perdus</span></li>
+                            <li><span class="link">Suivre mes commandes</span></li>
+                    
+                        </ul>
+                    </div>
+            
+                    
+                    <!--/.footer-list-wrap-->
+                
+                    <!--/.footer-lists-->
+                    <div class="footer-email">
+                    <h6 class="ftr-hdr">💌 Newsletter inspirante</h6>
+                    <div id="ftr-email" class="ftr-email-form">
+                        <form id="ftrEmailForm">
+                        <div class="error">Non valide</div>
+                        <input type="text" name="email_address_" id="ftrEmailInput" class="input" placeholder="Entrez votre e-mail" />
+                        <!--
+                            -->
+                        <input type="submit" class="button" value="ENVOyer" />
+                        <input type="hidden" name="country_iso2" value="">
+                        <input type="hidden" name="language_iso2" value="en">
+                        <input type="hidden" name="site_domain" value="art.com">
+                        <input type="hidden" name="email_acq_source" value="01-000001">
+                        <input type="hidden" name="email_acq_date" value="" id="ftr-email-date">
+                        <input type="hidden" name="brand_id" value="ART">
+                        <input type="hidden" name="_ri_" value="X0Gzc2X%3DWQpglLjHJlYQGnp51yrMf2qXdC9tjU8pzgMtwfYzaVwjpnpgHlpgneHmgJoXX0Gzc2X%3DWQpglLjHJlYQGnyLSq2fzdkuzdzglHMsUhgeNzaSgkk">
+                        </form>
+                    </div>
+                    <!--/.ftr-email-form-->
+                    <div class="ftr-email-privacy-policy"></div>
+                    </div>
+                    <!--/.footer-email-->
+                    <div class="footer-social">
+                    <h6 class="ftr-hdr">Nous suivre</h6>
+                    <ul>
+                        <li>
+                        <a href="#" title="Facebook" onclick="_gaq.push(['_trackSocial', 'Facebook', 'Follow', 'Footer', 'undefined', 'True']);">
+                            <img width="24" height="24" alt="Like us on Facebook" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/fb.png">
+                        </a>
+                        </li>
+                        <li>
+                        <a href="#" title="Google+" onclick="_gaq.push(['_trackSocial', 'GooglePlus', 'Follow', 'Footer', 'undefined', 'True']);">
+                            <img width="24" height="24" alt="Follow us on Google+" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/gplus.png">
+                        </a>
+                        </li>
+                        <li>
+                        <a href="#" target="_blank">
+                            <img width="24" height="24" alt="Follow us on Pinterest" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/pin-badge.png">
+                        </a>
+                        </li>
+                        <li>
+                        <a href="#" target="#">
+                            <img width="24" height="24" alt="Follow us on Instagram" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/instagram-badge.png">
+                        </a>
+                        </li>
+                        <li>
+                        <a href="#" title="Twitter" onclick="_gaq.push(['_trackSocial', 'Twitter', 'Follow', 'Footer', 'undefined', 'True']);">
+                            <img width="67" alt="Follow us on Twitter" src="http://cache1.artprintimages.com/images/jump_pages/rebrand/footer/twitter.png">
+                        </a>
+                        </li>
+                    </ul>
+                    </div>
+                    <!--/.footer-social-->
+                    
+                    <!--/.footer-legal-->
+                    <div class="footer-payment">
+                    <ul>
+                        
+                        
+                        
+                    </ul>
+                    </div>
+                    <!--/.footer-payment-->
+                </div>
+                <!--/.footer-custom-->
+                </div>
+                <!--/.footer-gray-->
+                </div>
+            </footer>
             
         </body>
 </html>

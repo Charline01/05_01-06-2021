@@ -17,23 +17,12 @@ app.use((req, res, next) => {
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.static('images'));
 
-app.use('/html', express.static(path.join(__dirname, 'html')));
-app.use(express.static('html'));
-
-
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.use('/api/cameras', cameraRoutes);
 app.use('/api/teddies', teddyRoutes);
 app.use('/api/furniture', furnitureRoutes);
-
-app.get('/', (req,res) => {
-  res.sendFile('html/index.html');
-	})
-  .use(function(req, res, next) {//fonction de routage de secours
-    res.redirect('/');
-  });
 
 
 module.exports = app;
