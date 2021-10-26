@@ -30,7 +30,7 @@
 
             </header>
 
-      <div class="containerCommander">
+      <div class="containerCommander" id="ConteneurRequete">
 
 
                     <a href="panier.html"><div class="boutonRetourPanier"> <i class="fas fa-arrow-alt-circle-left"></i> Modifier ma commande
@@ -49,21 +49,21 @@
                           <div class="modal__content">
                             <h2>Formulaire de paiement</h2>
 
-                            <form id="contact" name="contact" method="POST" onsubmit="validerFormulaire()">
+                            <form id="contact" name="contact">
                       
                                 <fieldset name="contact">
                                     <legend>Coordonnées</legend>
 
-                                    <input id="firstName" name="firstName" placeholder="Prenom" type="text" tabindex="1" required autofocus>
+                                    <input id="firstName" name="firstName" placeholder="Prenom" type="text" tabindex="1" required autofocus pattern="^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]{3,20})+$">
                                 
-                                    <input id="lastName" name="lastName" placeholder="Nom" type="text" tabindex="2" required >
+                                    <input id="lastName" name="lastName" placeholder="Nom" type="text" tabindex="2" required pattern="^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]{3,20})+$">
                                 
-                                    <input id="address" name="address" placeholder="Adresse" type="text" tabindex="3" required >
+                                    <input id="address" name="address" placeholder="Adresse" type="text" tabindex="3" required pattern="[0-9]{1,5}(?:(?:[,. ]){1}[-a-zA-Zàâäéèêëïîôöùûüç]+)*">
                               
-                                    <input id="city" name="city" placeholder="Ville" type="text" tabindex="4" required >
+                                    <input id="city" name="city" placeholder="Ville" type="text" tabindex="5" required pattern="([A-Za-z]{3,})" >
 
                             
-                                    <input id="email" name="email" placeholder="E-mail" type="email" tabindex="5" required>
+                                    <input id="email" name="email" placeholder="E-mail" type="email" tabindex="6" required pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})">
                                 </fieldset>
                             
                                             
@@ -110,7 +110,7 @@
                                       </div>
                                       <br>
 
-                                      <button class="button" id="boutonCommander" type="submit">Commander</button>
+                                      <button class="button" id="boutonCommander" onsumbit="validerFormulaire()">Commander</button>
 
                               
                             
@@ -131,90 +131,243 @@
 
 
 
-<script>
+<script type="text/javascript" src="../backend/commande.js">
+// // récupérer les informations du panier et les enregistrer dans le localstorage // 
+// function envoyerFormulaire() {
+//   var panier = JSON.parse(localStorage.getItem('panier'));
+
+// var products = ""; 
+// for (p = 0; p<panier.length;p++) {
+// products += "&products[]=" + panier[p];
+// }
 
 
-// récupérer les informations du panier et les enregistrer dans le localstorage // 
+// // function afficherRequete(some) {
+// //   document.getElementById("ConteneurRequete").innerHTML = some;
+// // }
+
+// // function lancementRequete (requeteApi) {
+// //   var request = new XMLHttpRequest();
+// //   request.open("POST", 'http://127.0.0.1:3000/api/teddies/order', true);
+// //   request.onload = function() {
+// //     if (req.status == 200) {
+// //       requeteApi(this.responseText);
+// //     } else {
+// //       requeteApi("Erreur" + req.status);
+// //     }
+// //   }
+// //   req.send();
+// // }
+
+// // lancementRequete();
 
 
-function envoyerFormulaire() {
-  var panier = JSON.parse(localStorage.getItem('panier'));
+// // var request = new XMLHttpRequest();
 
-var products = ""; 
-for (p = 0; p<panier.length;p++) {
-products += "&products[]=" + panier[p];
-}
+// // myPromise.then(
+// //   function(value) {
+// //     request.open("POST", 'http://127.0.0.1:3000/api/teddies/order', true);
+// //     },
+// //     function(error){
+// //       request.status == 404
+// //     }
+// // );
 
-var request = new XMLHttpRequest();
-request.open("POST", 'http://127.0.0.1:3000/api/teddies/order', true);
+// //JAVASCRIPT CALLBACK//
+// //   function afficherRequete(some) {
+// //    document.getElementById("ConteneurRequete").innerHTML = some;
+// //  }
 
-request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+// //  function getFile(myCallback) {
+// //    let req = new XMLHttpRequest();
+// //    req.open('"POST"', 'http://127.0.0.1:3000/api/teddies/order', true);
+// //    req.onload = function() {
+// //      if (req.status == 200) {
+// //        myCallback(this.responseText);
+// //      } else {
+// //        myCallback("Error : " + req.status);
+// //      }
+// //    }
+// //    req.send();
+// //  }
 
-var nom = localStorage.getItem('firstName');
-var prenom = localStorage.getItem('lastName');
-var adresse = localStorage.getItem('address');
-var ville = localStorage.getItem('city');
-var email = localStorage.getItem('email');
+// //  getFile(afficherRequete);
+
+
+// // function afficherRequete(some) {
+// //    document.getElementById("ConteneurRequete").innerHTML = some;
+// //     }
+
+// // let promesseRequete = new Promise(function(myResolve, myReject) {
+// //   let req = new XMLHttpRequest();
+// //   req.open('GET', 'http://127.0.0.1:3000/api/teddies/order', true);
+// //   req.onload = function() {
+// //     if (req.status == 200) {
+// //       myResolve(req.response);
+// //     } else {
+// //       myReject("Fichier non trouvé lolilol");
+// //     }
+// //   };
+// //   req.send();
+// // });
+
+// // promesseRequete.then(
+// //   function(value) {afficherRequete(value);},
+// //   function(error) {afficherRequete(error);}
+// // );
+
+// // let myPromise = new Promise(function(myResolve, myReject)  {
+// //   var request = new XMLHttpRequest();
+
+// //   if (request = new XMLHttpRequest()) {
+// //     myResolve = request.open("POST", 'http://127.0.0.1:3000/api/teddies/order', true);
+// //   } else {
+// //     myReject("Error");
+// //   }
+// // });
+
+// // myPromise.then(
+// //   function(value) {afficherRequete(value);},
+// //   function(error) {afficherRequete(error);}
+// // );
+
+
+
+// var get = function (url, succes){
+//   var request = new XMLHttpRequest();
+
+//   request.onreadystatechange = function () {
+//     if (request.readyState ===4) {
+//      succes(request.responseText)
+//     }
+//   }
+//   request.open('GET', url, true)
+//   request.send()
+// }
+
+
+// var getPosts = function () {
+//   get('http://127.0.0.1:3000/api/teddies/order', function (response) {
+//     console.log(response)
+//   })
+// }
+
+
+// console.log(getPosts())
+
+// // var request = new XMLHttpRequest();
+// //   request.open("POST", 'http://127.0.0.1:3000/api/teddies/order', true);
+
+
+
+
+// request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+
+
+
+
+// var nom = localStorage.getItem('firstName');
+// var prenom = localStorage.getItem('lastName');
+// var adresse = localStorage.getItem('address');
+// var codepostal = localStorage.getItem('cp');
+// var ville = localStorage.getItem('city');
+// var email = localStorage.getItem('email');
 
  
+//   request.send("contact[firstName]=" + nom + "&contact[lastName]=" + prenom +
+//    "&contact[address]="+ adresse + "&contact[cp]=" + codepostal + "&contact[city]=" + ville + "&contact[email]="
+//     + email + products);
+//   alert('Votre commande a bien été prise en compte.');
+
+//   request.onload = function () {
+//   var rep=request.responseText;
+//   localStorage.setItem('commande',rep); 
+//    window.location = "remerciement.html";
+
+// }
+
+// } 
+
+// //Enregistrer les informations du formulaire dans le localstorage//
+// function validerFormulaire(){
+//     var prenom = document.getElementById("firstName").value;
+//     var nom = document.getElementById("lastName").value;
+//     var adresse = document.getElementById("address").value;
+//     var codepostal = document.getElementById("cp").value;
+//     var ville = document.getElementById("city").value;
+//     var email = document.getElementById("email").value;
 
 
+//     //Vérification des regex du le formulaire
+// var regexNomPrenom = /^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]{3,20})$/;
+// var regexAdresse = /^([0-9a-z'àâéèêôùûçÀÂÉÈÔÙÛÇ\s-]{1,50})$/;
+// var regexCodepostal = /^[0-9]{5,5}$/;
+// var regexVille = /([A-Za-z]{3,})/;
+// var regexMail = /[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})/;
+ 
+ 
+//  if (regexNomPrenom.exec(nom) == null) {
+//     nom = "";
+// }
 
-
-
+// if (regexNomPrenom.exec(prenom) == null) {
+//     prenom = "";
   
-  request.send("contact[firstName]=" + nom + "&contact[lastName]=" + prenom + "&contact[address]="+ adresse + "&contact[city]=" + ville + "&contact[email]=" + email + products);
-  alert('Votre commande a bien été prise en compte.');
+// }
+// if (regexAdresse.exec(adresse) == null) {
+//     adresse = "";
+  
+// }
+// if (regexCodepostal.exec(codepostal) == null) {
+//     codepostal = "";
+  
+// }
+// if (regexVille.exec(ville) == null) {
+//     ville = "";
 
-  request.onload = function () {
-  var rep=request.responseText;
-  localStorage.setItem('commande',rep); 
- 
-  window.location="remerciement.html";
-}
-
-} 
-
-//Enregistrer les informations du formulaire dans le localstorage//
-function validerFormulaire(){
-    var prenom = document.getElementById("firstName").value;
-    var nom = document.getElementById("lastName").value;
-    var adresse = document.getElementById("address").value;
-    var ville = document.getElementById("city").value;
-     var email = document.getElementById("email").value;
-
-
-
-    if (prenom != "" && nom !="" && adresse!="" && ville !="" && email !=""){
-      var contact = {
-          firstName: prenom, 
-          lastName: nom,
-          address: adresse,
-          city: ville,
-          email: email
-          };
-
-          localStorage.setItem("contact", contact);
-          localStorage.setItem("firstName", prenom);
-          localStorage.setItem("lastName", nom);
-          localStorage.setItem("address", adresse);
-          localStorage.setItem("city", ville);
-          localStorage.setItem("email", email);
-
-        envoyerFormulaire();
-
-
-
-    }
-     else alert("Veuillez remplir tous les champs du formulaire");
-
-
- }
+// }
+// if (regexMail.exec(email) == null) {
+//     email= "";
+  
+// }
 
 
 
 
-</script>
+
+//     if (localStorage.getItem("total")!=0 && prenom != "" && nom !="" && adresse!="" && codepostal !="" && ville !="" && email !=""){
+//       var contact = {
+//           firstName: prenom, 
+//           lastName: nom,
+//           address: adresse,
+//           cp: codepostal,
+//           city: ville,
+//           email: email
+//           };
+
+//           localStorage.setItem("contact", contact);
+//           localStorage.setItem("firstName", prenom);
+//           localStorage.setItem("lastName", nom);
+//           localStorage.setItem("address", adresse);
+//           localStorage.setItem("cp", codepostal);
+//           localStorage.setItem("city", ville);
+//           localStorage.setItem("email", email);
+
+//         envoyerFormulaire();
+
+
+
+//     }
+//      else alert("Veuillez remplir tous les champs du formulaire");
+
+
+//  }
+
+
+
+
+// </script>
 
 
 
@@ -329,6 +482,8 @@ function validerFormulaire(){
   <!--/.footer-gray-->
   </div>
 </footer>
+
+
 
 </body>
 

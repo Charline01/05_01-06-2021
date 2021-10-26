@@ -1324,7 +1324,7 @@ body {
   font-size: 10px;
   color: #333;
 }
-.CartPage-ticket-itemValue, #produitPanier, #city, #email, #firstName, #lastName, #address, input {
+.CartPage-ticket-itemValue, #produitPanier, #city, #email, #firstName, #lastName, #address, #cp, input {
   width: 100%;
   font-size: 16px;
   font-weight: 700;
