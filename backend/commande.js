@@ -7,6 +7,7 @@
 // récupérer les informations du panier et les enregistrer dans le localstorage // 
 function envoyerFormulaire() {
     var panier = JSON.parse(localStorage.getItem('panier'));
+    
   
     var products = ""; 
     for (p = 0; p<panier.length;p++) {
