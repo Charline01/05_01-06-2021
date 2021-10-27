@@ -5,6 +5,16 @@
 // const { response } = require("express");
 
 // récupérer les informations du panier et les enregistrer dans le localstorage // 
+
+
+const sendBtn = document.querySelector('#boutonCommander');
+sendBtn.addEventListener('click', (e) =>{
+  e.preventDefault()
+  validerFormulaire()
+})
+
+
+
 function envoyerFormulaire() {
     var panier = JSON.parse(localStorage.getItem('panier'));
     
@@ -24,36 +34,37 @@ function envoyerFormulaire() {
         var email = localStorage.getItem('email');
 
 
+        products = JSON.parse(localStorage.getItem("panier"));
 
                 fetch('http://127.0.0.1:3000/api/teddies/order', {
                             method: 'POST',
                             headers: {
                               'Content-Type': 'application/json',
                                       },
-                            body:  JSON.stringify({
-                                  contact: {
-                                  firstName: nom, 
-                                  lastName: prenom,
-                                  address: adresse,
-                                  city: ville,
-                                  email: email
-                                            },
-                                products: localStorage.getItem("panier")
-                              })
-                            }).then((response) => {response.json()
+                                      body:  JSON.stringify({
+                                        contact: {
+                                        firstName: nom, 
+                                        lastName: prenom,
+                                        address: adresse,
+                                        city: ville,
+                                        email: email
+                                                  },
+                                      products
+                                    })
+                            }).then((response) => {return response.json()
                             })
                               .then((data) => {
-                                localStorage.setItem("commande", commande);
-                                  console.log(commande);
+                                  console.log(data);
+                                  localStorage.setItem('commande', (data.orderId))
                               })
                                 .catch(error => {
                                   console.log(error)
                                   alert("Problème requete")
                                 })
-                                window.location = "remerciement.html";
+                          window.location = "remerciement.html";     
                     };
                   
-
+                    
   
                   //Enregistrer les informations du formulaire dans le localstorage//
                   function validerFormulaire(){
@@ -112,8 +123,8 @@ function envoyerFormulaire() {
                                         localStorage.setItem("address", adresse);
                                         localStorage.setItem("city", ville);
                                         localStorage.setItem("email", email);
-                              
-                          envoyerFormulaire();
+                                        console.log(contact);
+                                        envoyerFormulaire();
                     }
 
        else alert("Veuillez vérifier tous les champs du formulaire");
