@@ -7,11 +7,11 @@
 // récupérer les informations du panier et les enregistrer dans le localstorage // 
 
 
-const sendBtn = document.querySelector('#boutonCommander');
-sendBtn.addEventListener('click', (e) =>{
-  e.preventDefault()
-  validerFormulaire()
-})
+// const sendBtn = document.querySelector('#boutonCommander');
+// sendBtn.addEventListener('click', (e) =>{
+//   e.preventDefault()
+//   validerFormulaire()
+// })
 
 
 
@@ -51,18 +51,20 @@ function envoyerFormulaire() {
                                                   },
                                       products
                                     })
-                            }).then((response) => {return response.json()
+                            }).then((response) => {
+                              if (response.ok === true){
+                                return response.json()
+                              }else{
+                                alert("Problème requete")
+                              }  
+
                             })
                               .then((data) => {
-                                  console.log(data);
+                                if (data.orderId){
                                   localStorage.setItem('commande', (data.orderId))
-                              })
-                                .catch(error => {
-                                  console.log(error)
-                                  alert("Problème requete")
-                                })
-                          window.location = "remerciement.html";     
-                    };
+                                  window.location = "remerciement.html";    
+                              }                             
+                    })
                   
                     
   
@@ -128,4 +130,10 @@ function envoyerFormulaire() {
                     }
 
        else alert("Veuillez vérifier tous les champs du formulaire");
-   }
+   }}
+
+   const sendBtn = document.querySelector('#boutonCommander');
+sendBtn.addEventListener('click', (e) =>{
+  e.preventDefault()
+  validerFormulaire()
+})
