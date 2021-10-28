@@ -7,11 +7,11 @@
 // récupérer les informations du panier et les enregistrer dans le localstorage // 
 
 
-// const sendBtn = document.querySelector('#boutonCommander');
-// sendBtn.addEventListener('click', (e) =>{
-//   e.preventDefault()
-//   validerFormulaire()
-// })
+const sendBtn = document.querySelector('#boutonCommander');
+sendBtn.addEventListener('click', (e) =>{
+  e.preventDefault()
+  validerFormulaire()
+})
 
 
 
@@ -68,72 +68,71 @@ function envoyerFormulaire() {
                   
                     
   
+                 }
+
+
                   //Enregistrer les informations du formulaire dans le localstorage//
                   function validerFormulaire(){
-                      var prenom = document.getElementById("firstName").value;
-                      var nom = document.getElementById("lastName").value;
-                      var adresse = document.getElementById("address").value;
-                      var ville = document.getElementById("city").value;
-                      var email = document.getElementById("email").value;
-                  
-                  
-                            //Vérification des regex du le formulaire
-                            var regexNomPrenom = /^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]{3,20})$/;
-                            var regexAdresse = /^([0-9a-z'àâéèêôùûçÀÂÉÈÔÙÛÇ\s-]{1,50})$/;
-                            var regexVille = /([A-Za-z]{3,})/;
-                            var regexMail = /[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})/;
+                    var prenom = document.getElementById("firstName").value;
+                    var nom = document.getElementById("lastName").value;
+                    var adresse = document.getElementById("address").value;
+                    var ville = document.getElementById("city").value;
+                    var email = document.getElementById("email").value;
+                
+                
+                          //Vérification des regex du le formulaire
+                          var regexNomPrenom = /^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]{3,20})$/;
+                          var regexAdresse = /^([0-9a-z'àâéèêôùûçÀÂÉÈÔÙÛÇ\s-]{1,50})$/;
+                          var regexVille = /([A-Za-z]{3,})/;
+                          var regexMail = /[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})/;
+                          
+                          
+                          if (regexNomPrenom.exec(nom) == null) {
+                              nom = "";
+                          }
+                          
+                          if (regexNomPrenom.exec(prenom) == null) {
+                              prenom = "";
                             
+                          }
+                          if (regexAdresse.exec(adresse) == null) {
+                              adresse = "";
                             
-                            if (regexNomPrenom.exec(nom) == null) {
-                                nom = "";
-                            }
+                          }
+                         
+                          if (regexVille.exec(ville) == null) {
+                              ville = "";
+                          
+                          }
+                          if (regexMail.exec(email) == null) {
+                              email= "";
                             
-                            if (regexNomPrenom.exec(prenom) == null) {
-                                prenom = "";
-                              
-                            }
-                            if (regexAdresse.exec(adresse) == null) {
-                                adresse = "";
-                              
-                            }
-                           
-                            if (regexVille.exec(ville) == null) {
-                                ville = "";
+                          }
+                          
+                          
+                
+                
+                
+                                if (localStorage.getItem("total")!=0 && prenom != "" && nom !="" && adresse!="" && ville !="" && email !=""){
+                                  var contact = {
+                                      firstName: prenom, 
+                                      lastName: nom,
+                                      address: adresse,
+                                      city: ville,
+                                      email: email
+                                      };
                             
-                            }
-                            if (regexMail.exec(email) == null) {
-                                email= "";
-                              
-                            }
-                            
-                            
-                  
-                  
-                  
-                                  if (localStorage.getItem("total")!=0 && prenom != "" && nom !="" && adresse!="" && ville !="" && email !=""){
-                                    var contact = {
-                                        firstName: prenom, 
-                                        lastName: nom,
-                                        address: adresse,
-                                        city: ville,
-                                        email: email
-                                        };
-                              
-                                        localStorage.setItem("contact", contact);
-                                        localStorage.setItem("firstName", prenom);
-                                        localStorage.setItem("lastName", nom);
-                                        localStorage.setItem("address", adresse);
-                                        localStorage.setItem("city", ville);
-                                        localStorage.setItem("email", email);
-                                        console.log(contact);
-                                        envoyerFormulaire();
-                    }
+                                      localStorage.setItem("contact", contact);
+                                      localStorage.setItem("firstName", prenom);
+                                      localStorage.setItem("lastName", nom);
+                                      localStorage.setItem("address", adresse);
+                                      localStorage.setItem("city", ville);
+                                      localStorage.setItem("email", email);
+                                      console.log(contact);
+                                      envoyerFormulaire();
+                  }
 
-       else alert("Veuillez vérifier tous les champs du formulaire");
-   }}
+     else alert("Veuillez vérifier tous les champs du formulaire");
+ }
 
-   const sendBtn = document.querySelector('#boutonCommander');
-sendBtn.addEventListener('click', (e) =>{
-  e.preventDefault()
-  validerFormulaire()
-})
+  
