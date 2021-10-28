@@ -1329,7 +1329,6 @@ body {
   font-size: 16px;
   font-weight: 700;
   padding: 0px 10px 20px 10px;
-  text-transform: uppercase;
 }
 .CartPage-ticket-itemValue .strikePrice {
   font-size: 12px;
@@ -1623,7 +1622,7 @@ body {
   font-weight: bold;
   animation: backgroundtwo 2s;
   background: linear-gradient(0.25turn, #f88335, #8d33fc);
-  -webkit-background-clip: text;
+-webkit-background-clip: text;
   color: transparent;
 }
 

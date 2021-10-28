@@ -41,42 +41,29 @@ var header = document.querySelector('header');
                      `
                   }
                
+if (panier.lenght==0){
+    section.innerHTML = "Panier vide";
+}
 
-
-                
-
-                   if (panier.lenght==0){
-                       section.innerHTML = "Panier vide";
-
-                   }
-
-                panier.forEach(id => {
-              chercherapi("http://127.0.0.1:3000/api/teddies/" + id);
-                });
-
-
-                function totalArticlePanier(){
-                  var totalPanier = document.querySelector('TotalArticle');
-                  
-                }
-
-        
+panier.forEach(id => {
+    chercherapi("http://127.0.0.1:3000/api/teddies/" + id);
+});
+    
             
 
-            function chercherapi(requestURL) {
+function chercherapi(requestURL) {
+    var request = new XMLHttpRequest();
 
-                    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
 
-                    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
 
-                    request.responseType = 'json';
-                    request.send();
-
-                    request.onload = function() {
-                        var teddies = request.response;
-                        showTeddies(teddies);
-                        }
-            }
+    request.onload = function() {
+        var teddies = request.response;
+        showTeddies(teddies);
+    }
+}
 
 
           
