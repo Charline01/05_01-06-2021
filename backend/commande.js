@@ -6,65 +6,61 @@
 
 
 const sendBtn = document.querySelector('#boutonCommander');
-sendBtn.addEventListener('click', (e) =>{
-  e.preventDefault()
-  validerFormulaire()
-})
 
+sendBtn.addEventListener('click', (e) =>{
+      e.preventDefault()
+      validerFormulaire()
+});
 
 
 function envoyerFormulaire() {
     var panier = JSON.parse(localStorage.getItem('panier'));
-    
-  
     var products = ""; 
+
     for (p = 0; p<panier.length;p++) {
-    products += "&products[]=" + panier[p];
+        products += "&products[]=" + panier[p];
     }
   
-        var nom = localStorage.getItem('firstName');
-        var prenom = localStorage.getItem('lastName');
-        var adresse = localStorage.getItem('address');
-        var ville = localStorage.getItem('city');
-        var email = localStorage.getItem('email');
+    var nom = localStorage.getItem('firstName');
+    var prenom = localStorage.getItem('lastName');
+    var adresse = localStorage.getItem('address');
+    var ville = localStorage.getItem('city');
+    var email = localStorage.getItem('email');
 
+    products = JSON.parse(localStorage.getItem("panier"));
 
-        products = JSON.parse(localStorage.getItem("panier"));
+    fetch('http://127.0.0.1:3000/api/teddies/order', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+                        body:  JSON.stringify({
+                          contact: {
+                          firstName: nom, 
+                          lastName: prenom,
+                          address: adresse,
+                          city: ville,
+                          email: email
+                                    },
+                        products
+                      })
+              }).then((response) => {
+                    if (response.ok === true){
+                      return response.json()
+                    }else{
+                      alert("Problème requete")
+                    } 
+              }).then((data) => {
+                    if (data.orderId){
+                      localStorage.setItem('commande', (data.orderId))
+                      window.location = "remerciement.html";    
+                    }                             
+              }).catch(error => {
+                  console.log(error);
+                  alert("Une erreur est survenue.")
+                  })
 
-                fetch('http://127.0.0.1:3000/api/teddies/order', {
-                            method: 'POST',
-                            headers: {
-                              'Content-Type': 'application/json',
-                                      },
-                                      body:  JSON.stringify({
-                                        contact: {
-                                        firstName: nom, 
-                                        lastName: prenom,
-                                        address: adresse,
-                                        city: ville,
-                                        email: email
-                                                  },
-                                      products
-                                    })
-                            }).then((response) => {
-                              if (response.ok === true){
-                                return response.json()
-                              }else{
-                                alert("Problème requete")
-                              } 
-                            })
-                              .then((data) => {
-                                if (data.orderId){
-                                  localStorage.setItem('commande', (data.orderId))
-                                  window.location = "remerciement.html";    
-                              }                             
-                              })
-                              .catch(error => {
-                                console.log(error);
-                                alert("Une erreur est survenue.")
-                               })
-
-                }
+};
 
 
 //Enregistrer les informations du formulaire dans le localstorage//
@@ -89,29 +85,27 @@ function validerFormulaire(){
       
       if (regexNomPrenom.exec(prenom) == null) {
           prenom = "";
-        
       }
+
       if (regexAdresse.exec(adresse) == null) {
           adresse = "";
-        
       }
       
       if (regexVille.exec(ville) == null) {
           ville = "";
-      
       }
+
       if (regexMail.exec(email) == null) {
           email= "";
-        
       }
         
-      var prixTotal = prixTotalPeluche();
-      // var prixTotal = localStorage.getItem("total");
+      // var prixTotal = prixTotalPeluche();
+      var prixTotal = localStorage.getItem("total");
 
       alert(prixTotal);
 
       if (prixTotal !=0 && prenom != "" && nom !="" && adresse!="" && ville !="" && email !=""){
-        var contact = {
+          var contact = {
             firstName: prenom, 
             lastName: nom,
             address: adresse,
@@ -134,27 +128,50 @@ function validerFormulaire(){
  }
 
   
- function prixPeluche(requestURL) {
+// function prixPeluche(requestURL) {
 
-  var request = new XMLHttpRequest();
+//     var request = new XMLHttpRequest();
 
-  request.open('GET', requestURL);
+//     request.open('GET', requestURL);
 
-  request.responseType = 'json';
-  request.send();
+//     request.responseType = 'json';
+//     request.send();
 
-  request.onload = function() {
-      var teddies = request.response;
-      console.log(teddies);
-     return teddies.price/100;
-      }
-}
+//     request.onload = function() {
+//         var teddies = request.response;
+//         console.log(teddies);
+//       return teddies.price/100;
+//     }
+// }
 
-function prixTotalPeluche(){
-  var panier = JSON.parse(localStorage.getItem("panier"));
-  var prix = 0;
-  panier.forEach(id => {
-    prix += prixPeluche("http://127.0.0.1:3000/api/teddies/" + id)
-    });
-  return prix;
-}
+// function prixTotalPeluche(){
+//     var panier = JSON.parse(localStorage.getItem("panier"));
+//     var prix = 0;
+//     panier.forEach(id => {
+//       prix += prixPeluche("http://127.0.0.1:3000/api/teddies/" + id)
+//       });
+//     return prix;
+// }
+
+
+// const priceDom = document.querySelector('#prixTotal')
+// var commande = localStorage.getItem('commande');
+// let ids = JSON.parse(localStorage.getItem('panier'))
+// let priceTab = []
+// document.getElementById("identifiantCommande").textContent = commande;
+
+// fetch('http://127.0.0.1:3000/api/teddies/')
+//   .then (res => res.json())
+//   .then(teddies => {
+//     console.log(ids)
+//     teddies.forEach(elem => {
+//       ids.forEach(id =>{
+//         if(elem._id === id){
+//             console.log(elem)
+//             priceTab.push(elem.price)
+//         }
+//       })
+//     })
+//     let finalPrice = priceTab.reduce((acc, el) => (acc + el))/100
+//     price.Dom.innerText = finalPrice
+//   })

@@ -1326,8 +1326,6 @@ body {
 }
 .CartPage-ticket-itemValue, #produitPanier, #city, #email, #firstName, #lastName, #address, #cp, input {
   width: 100%;
-  font-size: 16px;
-  font-weight: 700;
   padding: 0px 10px 20px 10px;
 }
 .CartPage-ticket-itemValue .strikePrice {
