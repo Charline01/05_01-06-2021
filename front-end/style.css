@@ -45,6 +45,13 @@ body{
   
 }
 
+.formulairePaiement{
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 20%);
+  padding: 20px;
+  width: 500px;
+}
+
+
 button{
  padding-top: 0px;
 }
@@ -435,8 +442,8 @@ h5 {
   }
 
 .button {
-  color: #ffffff;
-  background-color: rgb(214, 108, 9);
+  background-color: #ffffff;
+ 
   padding: 12px 25px;
   font-size: 12px;
   letter-spacing: 1px;
@@ -591,7 +598,7 @@ input {
 overflow-y: auto;
 align-content: center;
 margin:auto;
-width: 800px;
+
 }
   .modal__container {
     display: -ms-flexbox;
@@ -616,7 +623,6 @@ width: 800px;
     left: 0;
     height: 200%;
     width: 200%;
-    background-color: #fbcf34;
     border-radius: 50%;
     -ms-transform: translateX(-50%) translateY(-25%);
         transform: translateX(-50%) translateY(-25%); }
@@ -682,8 +688,21 @@ i.fa.fa-check  {
   font-size: 40px;
 }
 .containerCommander{
-  margin: 0% 10% 0% 10%;
+  
   background-color: rgba(255, 255, 255, 0.521);
+  display: flex;
+}
+
+.TitreRecapPanier{
+  padding: 50px;
+  font-size: 60px;
+  text-align: center;
+
+}
+
+.sectionPanier{
+  background-color: rgba(255, 255, 255, 0.63);
+  padding: 50px;
 }
 
 
@@ -693,7 +712,7 @@ i.fa.fa-check  {
   color: white;
   height: 60px;
   width: 60px;
-  transform: translate(-80px);
+  transform: translate(-650px);
   overflow: hidden;
   white-space: nowrap;
   display: inline-block;
@@ -1265,6 +1284,9 @@ body {
     width: 380px;
     /*position: sticky;*/
     top: 10px;
+    margin: auto;
+    align-items: center;
+    
   }
 }
 .CartPage-sidebar .CartPage-breadcrumb {
@@ -1288,9 +1310,9 @@ body {
 }
 @media only screen and (min-width: 1024px) {
   .CartPage-ticket {
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+    border: 2px solid #777;
     padding: 0 26px;
-    margin-bottom: 20px;
+    margin: 20px;
     order: 0;
   }
 }
@@ -1514,6 +1536,7 @@ body {
 }
 
 .CartPage-ticket-cartSubmit {
+  font-family: 'Comfortaa';
   display: flex;
   width: 100%;
   height: 64px;
@@ -1539,11 +1562,10 @@ body {
 }
 
 .ViderPanier{
+  font-family: 'Comfortaa';
   display: inline-block;
   width: 100%;
   height: 40px;
-  padding: 0 20px;
-  margin: 15px 0 17px 0;
   font-weight: 700;
   font-size: 16px;
   background: #ffffff;
@@ -1551,12 +1573,12 @@ body {
   border: solid 2px rgb(100, 100, 100);
   border-radius: 5px;
   cursor: pointer;
-  outline: none;
   text-decoration: none;
   box-sizing: border-box;
   -webkit-appearance: none;
   appearance: none;
   transition: background 0.1s ease-in-out, border-color 0.1s ease-in-out;
+  padding: 20px 0px 40px 70px;
 }
 
 .ViderPanier:hover{
@@ -1624,6 +1646,10 @@ body {
   color: transparent;
 }
 
+.boutonCommander{
+  background-color: white;
+}
+
 @keyframes backgroundtwo {
   0% {
     opacity: 0;
@@ -1654,7 +1680,7 @@ body {
   padding: 20px 0px 20px 0px;
 }
 
-.boutonVoir, .boutonpanier, .boutonCommander, .boutonRetourPanier, .boutonSuppr {
+.boutonVoir, .boutonpanier, .boutonCommander, .boutonRetourPanier, .boutonSuppr, .modifCommande {
    font-family: 'Comfortaa';
   border: 0;
     line-height: 2.5;
@@ -1673,11 +1699,11 @@ body {
                 inset -2px -2px 3px rgba(0, 0, 0, .6);
 }
 
-.boutonVoir:hover, .boutonpanier:hover, .boutonRetourPanier, .boutonSuppr:hover {
+.boutonVoir:hover, .boutonpanier:hover, .boutonRetourPanier, .boutonSuppr:hover, .modifCommande:hover {
   background-color: rgb(214, 108, 9);
 }
 
-.boutonVoir:active, .boutonpanier:hover, .boutonRetourPanier:hover, .boutonSuppr:hover {
+.boutonVoir:active, .boutonpanier:hover, .boutonRetourPanier:hover, .boutonSuppr:hover, .modifCommande:hover {
   box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
               inset 2px 2px 3px rgba(0, 0, 0, .6);
 }
