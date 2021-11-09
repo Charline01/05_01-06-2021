@@ -1,10 +1,7 @@
-// ------------------------------- COMMANDE.HTML --------------------------//
+// ------------------------------- PASSER LA COMMANDE --------------------------//
 
-// const { response } = require("express");
 
 // récupérer les informations du panier et les enregistrer dans le localstorage // 
-
-
 const sendBtn = document.querySelector('#boutonCommander');
 sendBtn.addEventListener('click', (e) =>{
   e.preventDefault()
@@ -65,8 +62,8 @@ function validerFormulaire(){
                 
                 
       //Vérification des regex du le formulaire
-      var regexNomPrenom = /^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]{3,20})$/;
-      var regexAdresse = /^([0-9a-z'àâéèêôùûçÀÂÉÈÔÙÛÇ\s-]{1,50})$/;
+      var regexNomPrenom = /[a-z ,.'-]+$/i;
+      var regexAdresse = /[a-z ,.'-]+$/i;
       var regexVille = /([A-Za-z]{3,})/;
       var regexMail = /[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})/;
       
@@ -94,9 +91,7 @@ function validerFormulaire(){
       }
         
       var prixTotal = prixTotalPeluche();
-      // var prixTotal = localStorage.getItem("total");
-
-     
+         
 
       if (prixTotal !=0 && prenom != "" && nom !="" && adresse!="" && ville !="" && email !=""){
         var contact = {
@@ -147,9 +142,6 @@ function prixTotalPeluche(){
 }
 
 
-
-
-
 // ------------------------------- PANIER.HTML --------------------------//
 var header = document.querySelector('header');
                     var section = document.querySelector('section');
@@ -169,29 +161,24 @@ var header = document.querySelector('header');
                              
                    } else {
                      boutonPanier.innerHTML=` <a href="remerciement.html">  
-                  <div class="CartPage-ticket-cartSubmit"> 
-                    
-                                <span class="btn_checked">
-                                    <i class="fas fa-check-circle"></i>
-                                    
-                                </span> 
-                   
-                                Je valide ma commande
-                                
-                                
-                              </div>
-                </a>
-                <a href ="index.html">
-                                  <div class ="ViderPanier" onclick="(function(){
-                                            if (confirm('Etes-vous sur de vouloir vider votre panier ?')) ViderPanier();
-                                          
-                                            })()"> 
-                                        <i class="far fa-trash-alt"></i> Vider mon panier
-                                  </div>
-                   
-                              </a>
-                     `
+                                                    <div class="CartPage-ticket-cartSubmit"> 
+                                                      <span class="btn_checked">
+                                                          <i class="fas fa-check-circle"></i>
+                                                      </span> 
+                                                      Je valide ma commande
+                                                    </div>
+                                                </a>
+
+                                              <a href ="index.html">
+                                                    <div class ="ViderPanier" onclick="(function(){
+                                                                            if (confirm('Etes-vous sur de vouloir vider votre panier ?')) ViderPanier();
+                                                                             })()"> 
+                                                                        <i class="far fa-trash-alt"></i> Vider mon panier
+                                                    </div>
+                                              </a>
+                                            `
                   }
+
                
 if (panier.lenght==0){
     section.innerHTML = "Panier vide";
@@ -222,7 +209,6 @@ function chercherapi(requestURL) {
 
 
 // Calculer le montant total de la commande
-
 function getTotal(teddies){
   totalAmount = totalAmount + teddies.price/100;
   document.getElementById("prixTotal").textContent = totalAmount;
@@ -293,40 +279,12 @@ function getTotal(teddies){
                   }
                 return trouver;
                 }
+                
 
-                function ViderPanier() {
-                  localStorage.setItem('panier',JSON.stringify([]));
-                    localStorage.setItem('total', 0);
-                    window.location = 'index.html';
-                }
-
-              // function monBoutonPanier(articleId){
-              //   let listFavorites = getFavorites();
-              //   listFavorites.push(articleId);
-              //   saveFavorites(listFavorites);
-              // }
-
-              // function removeFavorites(articleId){
-              //     let listFavorites = getFavorites();
-              //     listFavorites = listFavorites.filter(favorites => favorites.articleId);
-              //     saveFavorites(listFavorites);
-              // }
-
-              // function getFavorites(){
-              //   let listFavorites = localStorage.getItem("listFavorites");
-              //   if(listFavorites == null){
-              //     return [];
-              //   }else{
-              //     return JSON.parse(listFavorites);
-              //   }
-              // }
-
-              // function getFavorites(){
-              //     return getFavorites().map(favorites => favorites.articleId);
-              // }
-
-              // function saveFavorites(listFavorites){
-              //   localStorage.setItem("listFavorites",JSON.stringify(listFavorites));
-              // }
+function ViderPanier() {
+  localStorage.setItem('panier',JSON.stringify([]));
+    localStorage.setItem('total', 0);
+    window.location = 'index.html';
+}
 
 // ------------------------------- FIN PANIER.html --------------------------//

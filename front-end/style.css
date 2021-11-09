@@ -712,7 +712,7 @@ i.fa.fa-check  {
   color: white;
   height: 60px;
   width: 60px;
-  transform: translate(-650px);
+  transform: translate(-80px);
   overflow: hidden;
   white-space: nowrap;
   display: inline-block;
@@ -1680,7 +1680,16 @@ body {
   padding: 20px 0px 20px 0px;
 }
 
-.boutonVoir, .boutonpanier, .boutonCommander, .boutonRetourPanier, .boutonSuppr, .modifCommande {
+.boutonModifCommande a {
+  color:#777;
+}
+
+.boutonModifCommande a:hover {
+  color:#777;
+  font-weight: bold;
+}
+
+.boutonVoir, .boutonpanier, .boutonCommander, .boutonRetourPanier, .boutonSuppr {
    font-family: 'Comfortaa';
   border: 0;
     line-height: 2.5;
@@ -1699,11 +1708,11 @@ body {
                 inset -2px -2px 3px rgba(0, 0, 0, .6);
 }
 
-.boutonVoir:hover, .boutonpanier:hover, .boutonRetourPanier, .boutonSuppr:hover, .modifCommande:hover {
+.boutonVoir:hover, .boutonpanier:hover, .boutonRetourPanier, .boutonSuppr:hover {
   background-color: rgb(214, 108, 9);
 }
 
-.boutonVoir:active, .boutonpanier:hover, .boutonRetourPanier:hover, .boutonSuppr:hover, .modifCommande:hover {
+.boutonVoir:active, .boutonpanier:hover, .boutonRetourPanier:hover, .boutonSuppr:hover{
   box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
               inset 2px 2px 3px rgba(0, 0, 0, .6);
 }
