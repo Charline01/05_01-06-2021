@@ -180,9 +180,9 @@ var header = document.querySelector('header');
                   }
 
                
-if (panier.lenght==0){
-    section.innerHTML = "Panier vide";
-}
+
+
+                  
 
 let totalAmount = 0;
 

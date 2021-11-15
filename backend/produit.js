@@ -45,6 +45,7 @@ function ajouterPanier(id, prix){
 
         var total = parseInt(localStorage.getItem('total')) + parseInt(prix);
         localStorage.setItem('total', total);
+        alert("Ce produit a été ajouté au panier.") ;
     }
 
 
@@ -60,7 +61,6 @@ var myPara2 = document.createElement('p');
 
 var monBoutonPanier = document.createElement('button');
 
-
 var personnalisation = document.createElement('select');
 
 var myImage = document.createElement('img');
@@ -75,10 +75,6 @@ for(let i = 0; i<colors.length; i++){
 
 myH2.textContent = teddy.name;
 
-
-
-
-
 myPara1.textContent = 'Prix : ' + (teddy.price/100) + ' €';
 
 myPara2.textContent = 'Description : ' + teddy.description;
@@ -92,8 +88,6 @@ monBoutonPanier.textContent = '🛒 '+ 'Ajouter au panier';
         monBoutonPanier.style.backgroundColor = "#a293f5";
 
     });
-
-
     
 myArticle.appendChild(myH2);
 myArticle.appendChild(myPara1);
@@ -104,8 +98,8 @@ section.appendChild(myArticle);
 
 myArticle.appendChild(personnalisation);
 myArticle.appendChild(monBoutonPanier);
-
-
-
 }
+
+
+
 // ------------------------------- FIN PRODUIT.html --------------------------//

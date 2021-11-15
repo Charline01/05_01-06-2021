@@ -2349,6 +2349,34 @@ article p {
 
 @media (min-width: 200px) and (max-width: 700px) {
 
+  .containerCommander{
+    flex-direction: column;
+  }
+
+
+  .RacpitulatifPrix, .CartPage-ticket, .formulairePaiement{
+    margin: auto;
+    width: auto;
+  }
+
+  .sectionPanier{
+    padding: 10px 0px 0px 0px;
+      }
+
+  .modal__content, .TitreRecapPanier {
+padding: 0px;
+  }
+
+  .boutonCommander{
+    font-size: 10px;
+  }
+
+  .CartPage-ticket-cartSubmit{
+    padding: 5px;
+  }
+
+  
+
 .modal__container, .modal{
   display: flex;
   flex-direction: column;
@@ -2424,10 +2452,31 @@ legend, fieldset {
 
 @media (min-width: 701px) and (max-width: 1400px) {
 
-  .modal__featured{
-    display: none;
+  .containerCommander{
+    flex-direction: column;
   }
 
+
+  .RacpitulatifPrix, .CartPage-ticket, .formulairePaiement{
+    margin: auto;
+    width: auto;
+  }
+
+  .sectionPanier{
+    padding: 10px 0px 0px 0px;
+      }
+
+  .modal__content, .TitreRecapPanier {
+padding: 0px;
+  }
+
+  .boutonCommander{
+    font-size: 10px;
+  }
+
+  .CartPage-ticket-cartSubmit{
+    padding: 5px;
+  }
   .modal__container, .modal{
     display: flex;
     flex-direction: column;

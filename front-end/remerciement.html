@@ -98,7 +98,11 @@
                 <div class="problem">
                  
                  <!--Vider le localstorage lorsqu'on revient à la page d'accueil-->
-                 <a href="index.html"><div class="boutonRetourPanier" onclick="(function(){ localStorage.clear(); localStorage.setItem('total', 0); localStorage.setItem('panier', JSON.stringify([]));})()"> <i class="fas fa-arrow-alt-circle-left"></i> Retour à la page d'accueil
+                 <a href="index.html"><div class="boutonRetourPanier" 
+                                            onclick="(function(){ localStorage.clear(); 
+                                                localStorage.setItem('total', 0); 
+                                                localStorage.setItem('panier', JSON.stringify([]));})()">
+                                                 <i class="fas fa-arrow-alt-circle-left"></i> Retour à la page d'accueil
                  </div>
                  </a>
              </div>
