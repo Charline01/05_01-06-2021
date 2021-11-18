@@ -45,7 +45,7 @@ function ajouterPanier(id, prix){
 
         var total = parseInt(localStorage.getItem('total')) + parseInt(prix);
         localStorage.setItem('total', total);
-        alert("Ce produit a été ajouté au panier.") ;
+        alert(" Le produit n°" + id + " a bien été ajouté à votre panier.") ;
     }
 
 

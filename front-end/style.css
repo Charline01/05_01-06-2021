@@ -2349,6 +2349,15 @@ article p {
 
 @media (min-width: 200px) and (max-width: 700px) {
 
+  .body-popup{
+    margin: auto;
+    width: auto;
+  }
+
+  .thanks-order{
+    padding: 10px;
+  }
+
   .containerCommander{
     flex-direction: column;
   }
