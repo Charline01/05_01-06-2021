@@ -9,10 +9,7 @@
   src: url('Courgette.ttf');
 }
 
-@font-face {
-  font-family: "Muli";
-  src: url('Muli.ttf');
-}
+
 
 @font-face {
   font-family: "Amaranth";
@@ -382,8 +379,6 @@ h1 {
   width: 100%;
   padding: 10px;
   text-align: center;
-
-  background-image: url("http://extensionreforms.dacnet.nic.in/images/9.jpg");
   background-size: contain;
   background-position: top center;
   background-repeat: repeat;
