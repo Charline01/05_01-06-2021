@@ -1,14 +1,12 @@
-
-
-document.querySelector('.form input[type="button"]').addEventListener("click", function() {
+document.querySelector('.form input[type="button"]').addEventListener("click", function () {
     var valid = true;
-    for(let input of document.querySelectorAll(".form input, .form textarea")){
+    for (let input of document.querySelectorAll(".form input, .form textarea")) {
         valid &= input.reportValidity();
-        if(!valid){
+        if (!valid) {
             break;
         }
     }
-    if(valid){
+    if (valid) {
         alert("Votre message a bien été envoyé !");
     }
 });
